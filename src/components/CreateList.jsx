@@ -1,7 +1,9 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useContext } from 'react'
+import { appContext } from '../App'
 
-function CreateList({setTaskList}) {
+function CreateList() {
+    const {setTaskList}=useContext(appContext)
     const [taskTitle, setTaskTitle] = useState(' ')
     const handleInput = (e)=>{
         setTaskTitle(e.target.value)

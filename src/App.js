@@ -1,22 +1,23 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
 import CreateList from "./components/CreateList";
 import DisplayList from "./components/DisplayList";
-import './App.css'
+import "./App.css";
 
-
+export const appContext = createContext();
 function App() {
-  const [taskList, setTaskList] = useState([{title: 'Task 1', id:'2'}])
+  const [taskList, setTaskList] = useState([{ title: "Task 1", id: "2" }]);
 
-  function handleDelete(id){
-  let remTasks = taskList.filter(task=> task.id !== id)
-  setTaskList(remTasks)
-
+  function handleDelete(id) {
+    let remTasks = taskList.filter((task) => task.id !== id);
+    setTaskList(remTasks);
   }
   return (
-    <div className="App">
-      <CreateList setTaskList= {setTaskList}/>
-      <DisplayList list ={taskList} handleDelete = {handleDelete}/>
-    </div>
+    <appContext.Provider value={{ taskList, handleDelete, setTaskList }}>
+      <div className="App">
+        <CreateList />
+        <DisplayList />
+      </div>
+    </appContext.Provider>
   );
 }
 

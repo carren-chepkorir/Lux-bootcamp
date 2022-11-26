@@ -1,12 +1,14 @@
 import React from 'react'
-
-function DisplayList({list , handleDelete}) {
-    console.log(list)
+import { useContext } from 'react';
+import { appContext } from '../App';
+function DisplayList() {
+    const{taskList,handleDelete}=useContext(appContext)
+    console.log(taskList)
     
   return (
    <>
    <div className="displayWrapper">
-    {list.map(item=>{
+    {taskList.map(item=>{
         let {title, id} = item;
         return(
             <div className='taskWrapper'>
